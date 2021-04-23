@@ -12,7 +12,7 @@
 $ composer require ezreal/weather -vvv
 ```
 
-##配置
+## 配置
 
 在使用本扩展之前，你需要去 [高德开放平台](https://lbs.amap.com/) 注册账号，然后创建应用，获取应用的`API Key`。
 
@@ -58,7 +58,7 @@ $response = $weather->getWeather('深圳');
 $response = $weather->getWeather('深圳', 'all');
 ```
 
-####响应
+#### 响应
 
 ```php 
 {

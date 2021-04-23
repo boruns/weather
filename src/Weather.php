@@ -1,5 +1,14 @@
 <?php
 
+/*
+ * This file is part of the ezreal/weather.
+ *
+ * (c) ezreal_rao <ezreal_rao@163.com>
+ *
+ * This source file is subject to the MIT license that is bundled
+ * with this source code in the file LICENSE.
+ */
+
 namespace Ezreal\Weather;
 
 use Ezreal\Weather\Exceptions\HttpException;
@@ -9,13 +18,15 @@ use GuzzleHttp\Client;
 class Weather
 {
     /**
-     * api key
+     * api key.
+     *
      * @var string
      */
     protected $key;
 
     /**
-     * guzzle Options
+     * guzzle Options.
+     *
      * @var array
      */
     protected $guzzleOptions = [];
@@ -25,17 +36,11 @@ class Weather
         $this->key = $key;
     }
 
-    /**
-     * @return Client
-     */
     public function getHttpClient(): Client
     {
         return new Client($this->guzzleOptions);
     }
 
-    /**
-     * @param  array  $options
-     */
     public function setGuzzleOptions(array $options)
     {
         $this->guzzleOptions = $options;
@@ -43,9 +48,10 @@ class Weather
 
     /**
      * @param $city
-     * @param  string  $type
-     * @param  string  $format
+     * @param string $type
+     *
      * @return mixed|\Psr\Http\Message\ResponseInterface
+     *
      * @throws HttpException
      * @throws InvalidArgumentException
      * @throws \GuzzleHttp\Exception\GuzzleException
@@ -55,23 +61,24 @@ class Weather
         $url = 'https://restapi.amap.com/v3/weather/weatherInfo';
 
         if (!in_array(strtolower($format), ['xml', 'json'])) {
-            throw new InvalidArgumentException('Invalid response format: ' . $format);
+            throw new InvalidArgumentException('Invalid response format: '.$format);
         }
 
         if (!in_array(strtolower($type), ['base', 'all'])) {
-            throw new InvalidArgumentException('Invalid type value(base/all): ' . $type);
+            throw new InvalidArgumentException('Invalid type value(base/all): '.$type);
         }
 
         $query = array_filter([
             'key' => $this->key,
             'city' => $city,
             'output' => $format,
-            'extensions' => $type
+            'extensions' => $type,
         ]);
         try {
             $response = $this->getHttpClient()->get($url, [
-                'query' => $query
+                'query' => $query,
             ])->getBody()->getContents();
+
             return 'json' === $format ? \json_decode($response, true) : $response;
         } catch (\Exception $e) {
             throw new HttpException($e->getMessage(), $e->getCode(), $e);
@@ -80,8 +87,10 @@ class Weather
 
     /**
      * @param $city
-     * @param  string  $format
+     * @param string $format
+     *
      * @return mixed|\Psr\Http\Message\ResponseInterface
+     *
      * @throws HttpException
      * @throws InvalidArgumentException
      * @throws \GuzzleHttp\Exception\GuzzleException
@@ -93,8 +102,10 @@ class Weather
 
     /**
      * @param $city
-     * @param  string  $format
+     * @param string $format
+     *
      * @return mixed|\Psr\Http\Message\ResponseInterface
+     *
      * @throws HttpException
      * @throws InvalidArgumentException
      * @throws \GuzzleHttp\Exception\GuzzleException

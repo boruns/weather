@@ -1,9 +1,12 @@
 <?php
-/**
- * Created by PhpStorm
- * User: ezreal
- * Date: 2021/4/23
- * Time: 09:34
+
+/*
+ * This file is part of the ezreal/weather.
+ *
+ * (c) ezreal_rao <ezreal_rao@163.com>
+ *
+ * This source file is subject to the MIT license that is bundled
+ * with this source code in the file LICENSE.
  */
 
 namespace Ezreal\Weather;
@@ -14,7 +17,7 @@ class ServiceProvider extends \Illuminate\Support\ServiceProvider
 
     public function register()
     {
-        $this->app->singleton(Weather::class, function() {
+        $this->app->singleton(Weather::class, function () {
             return new Weather(config('services.weather.key'));
         });
         $this->app->alias(Weather::class, 'weather');

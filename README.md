@@ -3,6 +3,7 @@
 <p align="center">🌈  A Weather SDK.</p>
 
 [![Build Status](https://travis-ci.com/ezreal-rao/weather.svg?branch=main)](https://travis-ci.com/ezreal-rao/weather)
+![StyleCI build status](https://github.styleci.io/repos/360739797/shield)
 
 ## Weather
 

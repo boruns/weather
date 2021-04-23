@@ -1,6 +1,8 @@
 <h1 align="center"> weather </h1>
 
-<p align="center"> A Weather SDK.</p>
+<p align="center">🌈  A Weather SDK.</p>
+
+[![Build Status](https://travis-ci.com/ezreal-rao/weather.svg?branch=main)](https://travis-ci.com/ezreal-rao/weather)
 
 ## Weather
 

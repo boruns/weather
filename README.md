@@ -29,6 +29,8 @@ $weather = new Weather($key);
 ### 获取实时天气
 ```php
 $response = $weather->getWeather('深圳'); 
+//or
+$response = $weather->getLiveWeather('深圳');
 ```
 #### 响应
 ```json
@@ -56,6 +58,8 @@ $response = $weather->getWeather('深圳');
 
 ```php 
 $response = $weather->getWeather('深圳', 'all');
+//or
+$response = $weather->getForecastsWeather('深圳');
 ```
 
 #### 响应
